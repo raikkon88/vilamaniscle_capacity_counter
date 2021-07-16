@@ -1,0 +1,24 @@
+{
+  "name": "capacitycounter",
+  "version": "1.0.0",
+  "description": "A simple webpage to track the capacity of an event",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "author": "Marc Sanchez Pifarre",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^1.0.0",
+    "realm": "^10.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/node": "^7.14.7"
+  }
+}
