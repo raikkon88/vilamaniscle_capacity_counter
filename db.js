@@ -27,22 +27,24 @@ export const getMaxCapacity = async () => {
 }
 
 export const getPeopleCount = async () => {
-    return db.get('people').value().reduce((acc, inscription) => {
-        acc += inscription.count
-        return acc
-    }, 0)
+    const inscriptions = db.get('people').value()
+    let count = 0
+    for(const inscription of inscriptions) {
+        count += inscription.count || 0
+    }
+    return count
 }
 
 export const addPeople = async (inscription) => {
     const count = await getPeopleCount()
     const capacity = await getMaxCapacity()
     if(count + inscription.count > capacity) {
-        throw new Error('Max capacity overlaped')
+        throw new Error('S\'ha assolit la capacitat màxima.')
     }
     const people = db.get('people').value()
-    const exists = people.find(p => p.name === inscription.name || p.phone === inscription.phone)
+    const exists = people.find(p => p.phone === inscription.phone)
     if(exists) 
-        throw new Error('This inscription already exists')
+        throw new Error('Ja s\'ha realitzat una inscripció amb aquest telèfon.')
     db.get('people').value().push(inscription)
     await db.get('people').write()
 }

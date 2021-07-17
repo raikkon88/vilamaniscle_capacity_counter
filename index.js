@@ -3,12 +3,14 @@ import bodyParser from 'body-parser'
 import logger  from './logger'
 import PeopleRouter from './routers/people'
 import { configureDb } from './db'
+import cors from 'cors'
 import path from 'path'
 
 configureDb()
 
 const app = express()
 app.use(bodyParser.json())
+app.use(cors())
 
 app.use(function (req, res, next) {
     logger.nio(req.method + " " + req.originalUrl);

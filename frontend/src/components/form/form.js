@@ -6,8 +6,14 @@ import {
   Button,
   Slider,
   Typography,
+
 } from '@material-ui/core';
+import {
+  Alert,
+  AlertTitle,
+} from '@material-ui/lab';
 import useStyles from './styles';
+import Api from '../../api/axiosApi';
 
 const Form = () => {
   const classes = useStyles();
@@ -15,18 +21,40 @@ const Form = () => {
   const [name, setName] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [counter, setCounter] = React.useState(0);
+  const [globalCounter, setGlobalCounter] = React.useState(0);
+  const [capacity, setCapacity] = React.useState(0);
+  const [alert, setAlert] = React.useState('');
 
-  const printPeopleValue = (value) => {
+  const printPeopleValue = React.useCallback((value) => {
     setCounter(value);
     return `${value} persones`;
-  };
+  }, []);
 
-  const send = () => {
-    console.log(`${name} - ${phone} - ${counter}`);
-  };
+  React.useEffect(async () => {
+    const { data: { count: numberOfInscriptions } } = await Api.getInscriptionNumber();
+    setGlobalCounter(numberOfInscriptions);
+
+    const { data: { capacity: totalCapacity } } = await Api.getCapacity();
+    setCapacity(totalCapacity);
+  }, [setGlobalCounter]);
+
+  const send = React.useCallback(async () => {
+    try {
+      await Api.addInscription(name, phone, counter);
+      setGlobalCounter((prev) => prev + counter);
+      setAlert({ status: 'success', message: 'La teva inscripció s\'ha realitzat correctament.' });
+    } catch (err) {
+      setAlert({ status: 'error', message: err.response.data.error });
+    }
+  }, [name, phone, counter]);
 
   return (
     <Card className={classes.card}>
+      <Typography
+        className={classes.text}
+      >
+        {`Existeixen ${globalCounter} de ${capacity} places lliures.`}
+      </Typography>
       <form>
         <Grid container direction="column" alignItems="center">
           <TextField
@@ -60,6 +88,13 @@ const Form = () => {
               step={1}
             />
           </Grid>
+          { alert && (
+          <Alert severity={alert.status}>
+            <AlertTitle>{alert.status}</AlertTitle>
+            {alert.message && <Typography>{alert.message}</Typography>}
+            {alert.status !== 'error' && <strong>Gràcies!!</strong> }
+          </Alert>
+          )}
           <Button
             className={classes.button}
             onClick={send}
