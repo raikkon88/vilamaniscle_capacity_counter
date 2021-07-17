@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     }
     catch(err) {
         const code = err.message === 'Ja s\'ha realitzat una inscripció amb aquest telèfon.' 
-            || err.message === 'S\'ha assolit la capacitat màxima.' ? 400 : 500
+            || err.message === 'No ens queden prous places lliures.' ? 400 : 500
         res.status(code).send({error: err.message})
     }
     
