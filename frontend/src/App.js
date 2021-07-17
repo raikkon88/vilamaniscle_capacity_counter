@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Grid } from '@material-ui/core';
+import Form from './components/form/form';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid container>
+      <Grid item id="header" xs={12}>
+        logo
+      </Grid>
+      <Grid item container id="form" xs={12} sm={6} justifyContent="center" alignItems="center">
+        <Form />
+      </Grid>
+      <Grid item id="poster" xs={12} sm={6}>
+        poster
+      </Grid>
+      <Grid item id="footer" xs={12}>
+        footer
+      </Grid>
+    </Grid>
   );
 }
 
