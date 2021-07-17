@@ -39,7 +39,7 @@ export const addPeople = async (inscription) => {
     const count = await getPeopleCount()
     const capacity = await getMaxCapacity()
     if(count + inscription.count > capacity) {
-        throw new Error('S\'ha assolit la capacitat màxima.')
+        throw new Error('No ens queden prous places lliures.')
     }
     const people = db.get('people').value()
     const exists = people.find(p => p.phone === inscription.phone)

@@ -48,12 +48,18 @@ const Form = () => {
     }
   }, [name, phone, counter]);
 
+  if (globalCounter === capacity && globalCounter !== 0) {
+    return (
+      <Typography>S&apos;han exhaurit les inscripcions, no ens queden places.</Typography>
+    );
+  }
+
   return (
     <Card className={classes.card}>
       <Typography
         className={classes.text}
       >
-        {`Existeixen ${globalCounter} de ${capacity} places lliures.`}
+        {`Existeixen ${capacity - globalCounter} places lliures.`}
       </Typography>
       <form>
         <Grid container direction="column" alignItems="center">
@@ -76,7 +82,11 @@ const Form = () => {
             required
           />
           <Grid className={classes.slider}>
-            <Typography id="typographySlider-counter">Nombre de persones</Typography>
+            <Typography id="typographySlider-counter">
+              Nombre de persones (
+              {counter}
+              )
+            </Typography>
             <Slider
               defaultValue={1}
               aria-labelledby="typographySlider-counter"

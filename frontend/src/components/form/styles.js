@@ -15,6 +15,9 @@ const useStyles = makeStyles(() => ({
     marginTop: 8,
     maxWidth: 150,
   },
+  alert: {
+    padding: 8,
+  },
 }));
 
 export default useStyles;
