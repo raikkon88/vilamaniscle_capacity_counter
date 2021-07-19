@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     marginTop: 8,
-    maxWidth: 150,
+    maxWidth: 200,
   },
   alert: {
     padding: 8,

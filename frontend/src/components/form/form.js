@@ -56,6 +56,7 @@ const Form = () => {
 
   return (
     <Card className={classes.card}>
+      <Typography variant="h4" color="primary">Inscriu-te!</Typography>
       <Typography
         className={classes.text}
       >
