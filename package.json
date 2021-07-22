@@ -6,7 +6,8 @@
   "prettier": "prettier-airbnb-config",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --exec babel-node src/index.js",
+    "build": "babel src --out-dir dist"
   },
   "author": "Marc Sanchez Pifarre",
   "license": "ISC",
@@ -15,11 +16,13 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
-    "realm": "^10.6.0"
+    "realm": "^10.6.0",
+    "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.7",
-    "@babel/node": "^7.14.7"
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6"
   }
 }
