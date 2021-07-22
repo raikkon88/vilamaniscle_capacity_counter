@@ -6,8 +6,13 @@ import PeopleRouter from './routers/people'
 import { configureDb } from './db'
 import cors from 'cors'
 import path from 'path'
+import dotenv from 'dotenv'
+dotenv.config()
 
-configureDb()
+const DEFAULT_DB_NAME = process.env.DB_NAME || "db.json"
+const DEFAULT_DB_FOLDER = process.env.DB_FOLDER || '/home/volume'
+
+configureDb(DEFAULT_DB_NAME, DEFAULT_DB_FOLDER)
 
 const app = express()
 app.use(bodyParser.json())

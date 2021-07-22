@@ -11,8 +11,6 @@ const baseModel = {
 
 let db
 
-const DEFAULT_DB_NAME = process.env.DB_NAME || "db.json"
-const DEFAULT_DB_FOLDER = process.env.DB_FOLDER || '/home/marc/Documents'
 
 export const configureDb = (dbName, folderName) => {
     const name = dbName || DEFAULT_DB_NAME
