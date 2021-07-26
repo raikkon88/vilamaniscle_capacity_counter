@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
   },
   alert: {
     padding: 8,
+    marginTop: 13,
   },
 }));
 

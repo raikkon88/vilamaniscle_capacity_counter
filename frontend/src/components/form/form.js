@@ -48,7 +48,7 @@ const Form = () => {
     }
   }, [name, phone, counter]);
 
-  if (globalCounter === capacity && globalCounter !== 0) {
+  if (alert?.status !== 'success' && globalCounter === capacity && globalCounter !== 0) {
     return (
       <Typography>S&apos;han exhaurit les inscripcions, no ens queden places.</Typography>
     );
@@ -64,55 +64,60 @@ const Form = () => {
       </Typography>
       <form>
         <Grid container direction="column" alignItems="center">
-          <TextField
-            className={classes.formItem}
-            value={name}
-            onChange={(ev) => setName(ev.target.value)}
-            id="textField-name"
-            variant="outlined"
-            label="Nom i cognoms"
-            required
-          />
-          <TextField
-            className={classes.formItem}
-            value={phone}
-            onChange={(ev) => setPhone(ev.target.value)}
-            id="textField-phone"
-            variant="outlined"
-            label="Telèfon"
-            required
-          />
-          <Grid className={classes.slider}>
-            <Typography id="typographySlider-counter">
-              Nombre de persones (
-              {counter}
-              )
-            </Typography>
-            <Slider
-              defaultValue={1}
-              aria-labelledby="typographySlider-counter"
-              getAriaValueText={printPeopleValue}
-              valueLabelDisplay="auto"
-              marks
-              min={1}
-              max={10}
-              step={1}
-            />
-          </Grid>
-          { alert && (
-          <Alert severity={alert.status}>
-            <AlertTitle>{alert.status}</AlertTitle>
-            {alert.message && <Typography>{alert.message}</Typography>}
-            {alert.status !== 'error' && <strong>Gràcies!!</strong> }
-          </Alert>
+          { (!alert || alert?.status !== 'success') && (
+            <Grid item container direction="column">
+              <TextField
+                className={classes.formItem}
+                value={name}
+                onChange={(ev) => setName(ev.target.value)}
+                id="textField-name"
+                variant="outlined"
+                label="Nom i cognoms"
+                required
+              />
+              <TextField
+                className={classes.formItem}
+                value={phone}
+                onChange={(ev) => setPhone(ev.target.value)}
+                id="textField-phone"
+                variant="outlined"
+                label="Telèfon"
+                required
+              />
+              <Grid className={classes.slider}>
+                <Typography id="typographySlider-counter">
+                  Nombre de persones (
+                  {counter}
+                  )
+                </Typography>
+                <Slider
+                  defaultValue={1}
+                  aria-labelledby="typographySlider-counter"
+                  getAriaValueText={printPeopleValue}
+                  valueLabelDisplay="auto"
+                  marks
+                  min={1}
+                  max={10}
+                  step={1}
+                />
+              </Grid>
+              <Button
+                className={classes.button}
+                onClick={send}
+                variant="outlined"
+              >
+                Inscriu-me!
+              </Button>
+            </Grid>
           )}
-          <Button
-            className={classes.button}
-            onClick={send}
-            variant="outlined"
-          >
-            Inscriu-me!
-          </Button>
+
+          { alert && (
+            <Alert severity={alert.status} className={classes.alert}>
+              <AlertTitle>{alert.status}</AlertTitle>
+              {alert.message && <Typography>{alert.message}</Typography>}
+              {alert.status !== 'error' && <strong>Gràcies!!</strong> }
+            </Alert>
+          )}
         </Grid>
       </form>
     </Card>

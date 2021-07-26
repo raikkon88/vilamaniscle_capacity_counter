@@ -8,8 +8,8 @@ const useStyles = makeStyles(() => ({
     maxWidth: '70%',
   },
   poster: {
-    maxHeight: 800,
-    maxWidth: 500,
+    maxHeight: 600,
+    marginBottom: 21,
   },
   footer: {
     margin: 35,
@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
   oldLogo: {
     padding: 21,
     width: 250,
+    marginBottom: 21,
   },
 }));
 

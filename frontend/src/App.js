@@ -36,7 +36,7 @@ function App() {
           <img className={classes.oldLogo} src={vilamaniscleIsoLogo} alt="Imatge sobre el iso logo tip del poble de vilamaniscle" />
 
         </Grid>
-        <Grid item id="poster" xs={12} sm={6}>
+        <Grid item id="poster" xs={12} sm={6} container justifyContent="center" alignItems="center">
           <img className={classes.poster} src={poster} alt="Imatge sobre la programació de concerts a vilamaniscle" />
         </Grid>
 
