@@ -2,8 +2,7 @@ import low from 'lowdb'
 import FileSync from 'lowdb/adapters/FileSync'
 import logger from './logger'
 
-const maxCapacity = process.env.APP_MAX_CAPACITY || 10
-
+const maxCapacity = parseInt(process.env.APP_MAX_CAPACITY) || 150
 const baseModel = {
     people: [],
     maxCapacity 

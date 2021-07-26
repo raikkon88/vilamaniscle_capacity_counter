@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = `${(process.env.BACKEND || 'http://localhost:4000')}/api`;
+const url = `${(process.env.BACKEND || 'https://itinera.vilamaniscle.cat')}/api`;
 
 const api = {
   getInscriptionNumber: async () => axios.get(url),
