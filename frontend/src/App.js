@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Form from './components/form/form';
 import vilamaniscleLogo from './images/vilamaniscle_new.svg';
-import poster from './images/poster.jpg';
+import poster from './images/poster.png';
 import vilamaniscleIsoLogo from './images/vilamaniscle_old.svg';
 import styles from './styles';
 
